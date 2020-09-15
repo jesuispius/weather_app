@@ -64,10 +64,9 @@ function getInfoByCoordinations(lattitude, longtitude) {
         .then(function(obj) {
             addInfoToPage(obj);
         })
-        .catch(function(err) {
-            console.error("Something wrong!");
-            console.error(err);
-        });
+        /*.catch(error => {
+            console.error('Error:', error);
+        });*/
 }
 
 // Function to add the location name to page
@@ -183,11 +182,11 @@ function addInfoToPage(data) {
     for (var i = 1; i <= 8; i++) {
         var forecast_item = document.createElement("div");
         forecast_item.classList.add("next-5-days__row");
-        var icon_daily_parse = daily[i].weather[0].icon;
+        //var icon_daily_parse = daily[i].weather[0].icon;
         var forecast_daily_item_markup = `
             <div class="next-5-days__date">
-                ${moment(daily[i].dt*1000).tz(timezone).format('dddd')}
-                <div class="next-5-days__label">30/7</div>
+                ${moment((daily[i].dt)*1000).tz(timezone).format('dddd')}
+                <div class="next-5-days__label">${moment((daily[i].dt)*1000).tz(timezone).format('ll')}</div>
             </div>
             <div class="next-5-days__low">
                 ${Kelvin2Celcius(daily[i].temp.min)}&#176;
@@ -198,7 +197,7 @@ function addInfoToPage(data) {
                 <div class="next-5-days__label">High</div>
             </div>
             <div class="next-5-days__icon">
-                <img src="https://openweathermap.org/img/wn/${icon_daily_parse}@2x.png" alt=${daily[i].weather[0].main}>
+                <img src="https://openweathermap.org/img/wn/${daily[i].weather[0].icon}@2x.png" alt=${daily[i].weather[0].main}>
             </div>
             <div class="next-5-days__rain">
                 ${daily[i].humidity}%
