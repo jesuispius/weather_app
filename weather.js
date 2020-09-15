@@ -182,7 +182,7 @@ function addInfoToPage(data) {
     for (var i = 1; i <= 8; i++) {
         var forecast_item = document.createElement("div");
         forecast_item.classList.add("next-5-days__row");
-        //var icon_daily_parse = daily[i].weather[0].icon;
+
         var forecast_daily_item_markup = `
             <div class="next-5-days__date">
                 ${moment((daily[i].dt)*1000).tz(timezone).format('dddd')}
